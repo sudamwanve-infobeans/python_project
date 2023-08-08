@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'basic_app/basic.html' %}
+    {% block body_block %}
+        <h2>Welcome to Home</h2>
+         <h2> This is an example of templates inheritance </h2>
+            <p>{{ text }}</p>
+            <p>{{ number }}</p>
+        <p>{{ text|length }}</p>
+        <p>{{ text|slice:":2" }}</p>
+        <p>{{ text|lower }}</p>
+        <p>{{ text|upper }}</p>
+        <p>{{ text|title }}</p>
+        <p>{{ listvar|join:", " }}</p>
+        <p>{{ number|add:10 }}</p>
+           <p>Custom Tag</p>
+ <p>{{ text|cut:"Hello" }}</p>
+
+{% endblock %}
