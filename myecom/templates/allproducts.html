@@ -26,7 +26,10 @@
               <div class="detail-box">
                 <h6>{{ p.name }}</h6>
                 <h6> Price <span>${{ p.price }} </span></h6>
-                <a href="#" class="btn btn-primary">Add to Cart</a>
+              </div>
+
+              <div class="detail-box">
+                <a href="{% url 'add-to-cart' p.id  %}" class="btn btn-primary">Add to Cart</a>
               </div>
               <div class="new"><span>New </span></div>
             </a>
