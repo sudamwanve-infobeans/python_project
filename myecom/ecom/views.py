@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from ecom.models import BlogModel
-from . import forms,models
+from . import forms, models
 from django.views.generic import (View, TemplateView, ListView, DetailView, 
                                   CreateView, DeleteView, UpdateView)
-
+from ecom.forms import UserForm, UserProfileInfoForm
 from django.urls import reverse_lazy
 
 
