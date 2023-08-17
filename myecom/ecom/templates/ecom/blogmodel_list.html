@@ -13,27 +13,26 @@
       </div>
           {% if blogmodel_list %}
       <div class="row">
-            <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-md-10 col-lg-8 col-xl-7">
-      {% for blog in blogmodel_list %}
-           <div class="post-preview">
-                  <p class="post-meta">
-                            Posted by
-                            <a href="#!">{{ blog.userid  }}</a>
-                            on September 24, 2023
-                        </p>
-                        <a href="post.html">
-                               <p><span class="boldd">Description:</span> {{ blog.desc|slice:":100" }}...
-                            <a href="{% url 'ecom:blog_details' blog.id %}">Details</a></p>
-                        </a>
 
-                    </div>
-          <hr class="my-4" />
-          {% endfor %}
-                      </div>
-            </div>
+      {% for blog in blogmodel_list %}
+                    <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="box" style="height: 211px;">
+
+                <img src="{{ blog.blog_img.url }}" alt="" style="width: 100%;height: 100px;">
+
+              <div class="detail-box">
+                <h6>By : {{ blog.userid  }}</h6>
+              </div>
+
+              <div class="detail-box">
+                   <p><span class="boldd">Description:</span> {{ blog.desc|slice:":20" }}...
+                         <a href="{% url 'ecom:blog_details' blog.id %}" style="color: blue;">Details</a></p>
+              </div>
+
+          </div>
         </div>
+          {% endfor %}
+
            {% else %}
                 <h1 class="center">Oops! Sorry You have no Blogs added yet, Please Add new Blogs...</h1>
               {% endif %}

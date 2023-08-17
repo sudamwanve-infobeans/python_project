@@ -6,8 +6,10 @@
 
     <div class="jumbotron">
         <h1 class="text-center">Welcome to Blog Details</h1>
-            <img src="{{ blog_details.blog_img.url }}" class="img-responsive" style="width:100%" alt="Image">
-            <p><span class="boldd">Description:</span> {{ blog_details.desc }}</p>
+            <img src="{{ blog_details.blog_img.url }}" class="img-responsive" style="height: 200px;" alt="Image">
+        <p></p>
+        <p><span class="boldd"><b>Description:</b></p>
+        <p> {{ blog_details.desc }}</p>
     </div>
     {% if user.is_authenticated and user.username == blog_details.userid.get_username  %}
     <div class="container">
