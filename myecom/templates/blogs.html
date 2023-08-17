@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body_block %}
+ <section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+         Blogs
+        </h2>
+      </div>
+          {% if all_data %}
+      <div class="row">
+            <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+       {% for blog in all_data %}
+           <div class="post-preview">
+                  <p class="post-meta">
+                            Posted by
+                            <a href="#!">{{ blog.userid  }}</a>
+                            on September 24, 2023
+                        </p>
+                        <a href="post.html">
+                               <p><span class="boldd">Description:</span> {{ blog.desc|slice:":100" }}...
+                            <a href="{% url 'ecom:blog_details' blog.id %}">Details</a></p>
+                        </a>
+
+                    </div>
+          <hr class="my-4" />
+          {% endfor %}
+                      </div>
+            </div>
+        </div>
+           {% else %}
+                <h1 class="center">Oops! Sorry You have no Blogs added yet, Please Add new Blogs...</h1>
+              {% endif %}
+        </div>
+    </div>
+  </section>
+{% endblock %}

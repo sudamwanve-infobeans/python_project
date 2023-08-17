@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body_block %}
+
+    <div class="jumbotron">
+        <h1 class="text-center">Welcome to Blog Details</h1>
+            <img src="{{ blog_details.blog_img.url }}" class="img-responsive" style="width:100%" alt="Image">
+            <p><span class="boldd">Description:</span> {{ blog_details.desc }}</p>
+    </div>
+    {% if user.is_authenticated and user.username == blog_details.userid.get_username  %}
+    <div class="container">
+        <p><a class="btn btn-warning" href="{% url 'ecom:update' pk=blog_details.pk  %}">Update</a> &nbsp;
+        <a class="btn btn-danger" href="{% url 'ecom:delete' pk=blog_details.pk  %}">Delete</a></p>
+    </div>
+    {% endif %}
+
+
+{% endblock %}

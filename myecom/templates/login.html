@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+<section class="client_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Login
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+            <div class="col-md-4">
+                 <div class="card" style="background: #d1d1e7;padding: 38px;">
+                {% if errors %}
+                    <div class="alert alert-warning messages">
+                        {{ errors }}
+                    </div>
+                {% endif %}
+
+                <form action="{% url 'ecom:user_login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+
+                        <input type="text" name="username" class="form-control" placeholder="Username"><br>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control" placeholder="Password"><br>
+                    </div>
+
+                    <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary form-control">
+                    </div>
+                    <p>New to My Ecommerce?  <a href="{% url 'ecom:register' %}">Register</a></p>
+
+                </form>
+                       </div>
+        </div>
+    </div>
+</section>
+
+
+
+{%endblock%}

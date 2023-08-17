@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+    
+    <div class="container">
+        <div class="row">
+        <br>
+        <img src="{{ blogmodel.blog_img.url }}" class="img-responsive"  alt="Image">
+        <h1>Are you Sure want to Delete Blog: {{ blogmodel.desc }}?</h1>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-danger" value="Delete"> 
+                <a href="{% url 'ecom:blog_details' pk=blogmodel.pk %}">Cancel</a>
+            </form>
+        </div>
+    </div>
+  
+{% endblock %}

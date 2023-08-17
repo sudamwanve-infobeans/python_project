@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+<style>
+.userform{
+    border: 1px solid black;
+    padding: 20px;
+    margin: 10Px;
+    background: #dde8f1;
+    }
+.regmsg{
+    margin-left: 175px;
+    background: #7796a9;
+    width: 72%;
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+
+    }
+</style>
+<section class="client_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          REGISTER
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+        {% if register %}
+            <div class="col-md-3"></div>
+            <div class="col-md-6" style="background: #6fa96f;color: white;padding: 12px;margin-left: 60px;">
+            <h2>Thank you for Register!</h2>
+            </div>
+        {% else %}
+            <div class="col-md-4"></div>
+            <div class="col-md-4" style="background: #d1d1e7;padding: 40px;">
+
+
+                <form method="POST" enctype="multipart/form-data">
+                     {{ user_form.username.label_tag }}
+                     <div class="form-group">
+                                    {{ user_form.username }}
+                                </div>
+                     {{ user_form.password.label_tag }}
+                    <div class="form-group">
+                                    {{ user_form.password }}
+                                </div>
+                     {{ user_form.email.label_tag }}
+                    <div class="form-group">
+                                    {{ user_form.email }}
+                                </div>
+                    {{ profile_user_form.as_div }}
+                    {% csrf_token %}
+                    <input type="submit" value="Register" class="btn btn-primary " style="margin-left: 69px;margin-top:10px;">
+                </form>
+
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}
+

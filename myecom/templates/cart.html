@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body_block %}
+ {% for message in messages %}
+<div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    {{ message | safe }}
+</div>
+{% endfor %}
+<section class="shop_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          My Cart
+        </h2>
+      </div>
+      <div class="row">
+   {% if product_count_in_cart > 0  %}
+    <table class="table table-hover table-bordered" id="dev-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Price</th>
+          <th>Description</th>
+          <th>Action</th>
+
+        </tr>
+      </thead>
+      {% for p in products %}
+  {% if p %}
+
+      <tr>
+        <td> {{p.name}}</td>
+        <td> <img src="{{ p.product_image.url }}" alt="Profile Pic" height="50px" width="50px" /></td>
+        <td>$ {{p.price}}</td>
+        <td>{{p.description}}</td>
+
+        <td><a class="btn btn-danger btn-xs" href="{% url 'remove-from-cart' p.id  %}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
+  <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
+</svg></a></td>
+
+      </tr>
+      {%else%}
+      <br><br><br>
+      <h1>no products</h1>
+      {% endif %}
+      {% endfor %}
+    </table>
+  </div>
+ <div class="row">
+<div style="text-align: center;">
+  <button class="btn btn-danger btn-lg">Total ${{total}}</button>
+
+        {% if user.is_authenticated  %}
+        <a href="{% url 'customer-address' %}"><button class="btn btn-success btn-lg" ><span>Purchase </span></button></a>
+        {% else  %}
+        <a href="{% url 'ecom:user_login' %}"><button class="btn btn-success btn-lg" ><span>Login For Purchase </span></button></a>
+        {% endif %}
+  {% else  %}
+    <div style="text-align: center;width: 40%;background: #09345a;margin-left: 30%;color: white;"> Please add product in Cart</div>
+  {% endif %}
+
+
+</div>
+   </div>
+      </div>
+</section>
+{% endblock %}
