@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+ <div class="container mt-5" style="border: 5px solid black;">
+        <div class="card" style="padding: 10px;background: azure;">
+
+             <img src="{{ url_for('static', filename='blogs/'+post.bimg)}}" class="card-img-top" alt="{{ post.title }}" style="width: 70%;height: 350px;margin-left: 15%;">
+            <div class="card-body">
+                <h2 class="card-title">{{ post.title }}</h2>
+                <p><span>Written By: {{ post.author.username }}</span> <br><span>Published: {{ post.date.strftime("%Y-%m-%d") }}</span></p>
+                <p class="card-text">{{ post.text }}</p>
+            </div>
+
+
+
+        {% if post.author == current_user %}
+            <div class="card-footer">
+                 <a href="{{ url_for('blogpost.update_post', blog_post_id=post.id)}}" class="btn btn-primary" >Update</a>
+        <form action="{{url_for('blogpost.delete_post', blog_post_id=post.id)}}" method="POST">
+                        <input type="submit" class="btn btn-danger" value="Delete" style="float: right;margin-top: -37px;">
+                    </form>
+            </div>
+
+        {%endif %}
+
+</div>
+</div>
+{% endblock %}
+
+

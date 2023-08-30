@@ -1,0 +1,45 @@
+  {% extends 'admin/admin_base.html' %}
+{% block content %}
+<div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Carousel</h1>
+                        <ol class="breadcrumb mb-4">
+                            <li class="breadcrumb-item">Carousel</li>
+                            <li class="breadcrumb-item active">Tables</li>
+                        </ol>
+                        <a href="{{url_for('admin.createCarousel')}}" class="btn btn-primary">Add New</a>
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <i class="fas fa-table me-1"></i>
+                                Carousel Data List
+                            </div>
+                            <div class="card-body">
+                                <table class="table">
+  <thead>
+        <tr>
+             <th>S.N</th>
+            <th>TITLE</th>
+            <th>IMAGE</th>
+        </tr>
+  </thead>
+  <tbody>
+        {% for citem in carousel_items%}
+            <tr>
+                 <td>{{ loop.index }}</td>
+                <td>{{ citem.title }}</td>
+                <td><img src="{{ url_for('static', filename='carousal/'+citem.cimg) }}" style="width: 100px; height: 50px;"></td>
+                <td> <form method="POST" action="{{ url_for('admin.deleteCarousel', item_id=citem.id) }}">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form></td>
+            </tr>
+        {% endfor %}
+
+  </tbody>
+</table>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+</div>
+  {% endblock %}
